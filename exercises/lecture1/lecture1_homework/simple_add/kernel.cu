@@ -5,7 +5,10 @@
 __global__ void add(int *a, int *b, int *c)
 {
     /* sum of a and b stored in c */
-	...
+/*	int tid = blockIdx.x;
+	if (tid < N)
+		c{tid} = a[tid] + b[tid];*/
+	*c = *a + *b;
 }
 
 int main()
@@ -33,11 +36,11 @@ int main()
 
 	/* launch the kernel on the GPU */
 	/* use 1 block per grid and 1 thread per block*/
-	...
+	add<<<1, 1>>>(d_a, d_b, d_c);
 
 	/* copy result back to host */
 
-	cudaMemcpy( &c, d_c, size, ... );
+	cudaMemcpy( &c, d_c, size, cudaMemcpyDeviceToHost );
 
 	printf("value of c after kernel is %d\n",c);
 

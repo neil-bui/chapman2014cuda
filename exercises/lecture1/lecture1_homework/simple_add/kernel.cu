@@ -31,8 +31,8 @@ int main()
 
 	/* copy inputs to device */
 
-	cudaMemcpy( d_a, &a, size, ... );
-	cudaMemcpy( d_b, &b, size, ... );
+	cudaMemcpy( d_a, &a, size, cudaMemcpyHostToDevice );
+	cudaMemcpy( d_b, &b, size, cudaMemcpyHostToDevice );
 
 	/* launch the kernel on the GPU */
 	/* use 1 block per grid and 1 thread per block*/
